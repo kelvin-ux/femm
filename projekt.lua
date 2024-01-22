@@ -89,8 +89,9 @@ function GetMaterial(material)
     return mi_getmaterial(material)
 end
 
+GetMaterial('Copper')
 GetMaterial('M-19')
-
+GetMaterial('Pure Iron') -- nie jestem pewnien czy to ten materiał 
 
 function AddMaterial(material, x, y)
     local mux = 1
@@ -116,5 +117,6 @@ function AddMaterial(material, x, y)
     mi_clearselected()
 end
 
-AddMaterial('M-19', -0.5, 1.5)
-AddMaterial('M-19', -0.5, -1.5)
+AddMaterial('Copper', -0.5, 1.5)
+AddMaterial('M-19', -1, 7)
+AddMaterial('M-19', -7, 23)
