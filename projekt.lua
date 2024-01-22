@@ -93,7 +93,7 @@ GetMaterial('Copper')
 GetMaterial('M-19')
 GetMaterial('Pure Iron') -- nie jestem pewnien czy to ten materiał 
 
-function AddMaterial(material, x, y)
+function AddMaterial_default(material, x, y)
     local mux = 1
     local muy = 1
     local Hc = 0
@@ -116,6 +116,40 @@ function AddMaterial(material, x, y)
     mi_setblockprop(material,0, 0, "<None>", 0, 0 , 1)
     mi_clearselected()
 end
+
+function AddMaterial_complex(material, x, y, mux, muy, Hc, J, Cduct, Lamd, Phi_max, lam, lam_type, phi_x, phi_y, nstr, dwire)
+    mi_addmaterial(material, mux, muy, Hc, J, Cduct, Lamd, Phi_max, lam, lam_type, phi_x, phi_y, nstr, dwire)
+    
+    mi_setblockprop(material, 0, 0, "<None>", 0, 0, 0)
+    mi_addblocklabel(x, y)
+    mi_selectlabel(x, y)
+    mi_setblockprop(material, 0, 0, "<None>", 0, 0, 1)
+    mi_clearselected()
+end
+-- mu x Relative permeability in the x- or r-direction.
+-- – mu y Relative permeability in the y- or z-direction.
+-- – H c Permanent magnet coercivity in Amps/Meter.
+-- – J Applied source current density in Amps/mm2
+-- .
+-- – Cduct Electrical conductivity of the material in MS/m.
+-- – Lam d Lamination thickness in millimeters.
+-- – Phi hmax Hysteresis lag angle in degrees, used for nonlinear BH curves.
+-- – Lam fill Fraction of the volume occupied per lamination that is actually filled with iron (Note 
+-- that this parameter defaults to 1 in the femm preprocessor dialog box because, by default, 
+-- iron completely fills the volume)
+-- – Lamtype Set to
+-- ∗ 0 – Not laminated or laminated in plane
+-- ∗ 1 – laminated x or r
+-- ∗ 2 – laminated y or z
+-- ∗ 3 – magnet wire
+-- ∗ 4 – plain stranded wire
+-- ∗ 5 – Litz wire
+-- ∗ 6 – square wire
+-- – Phi hx Hysteresis lag in degrees in the x-direction for linear problems.
+-- – Phi hy Hysteresis lag in degrees in the y-direction for linear problems.
+-- – nstr Number of strands in the wire build. Should be 1 for Magnet or Square wire.
+-- – dwire Diameter of each of the wire’s constituent strand in millimeters.
+
 
 AddMaterial('Copper', -0.5, 1.5)
 AddMaterial('M-19', -1, 7)
